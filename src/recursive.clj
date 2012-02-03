@@ -20,18 +20,19 @@
             (alter state assoc :args args)
             cont))))))
 
-(def factorial
-  (tail-recursive
-    (fn [n acc]
-      (if (= n 0)
-        acc
-        (factorial (- n 1) (* n acc))))))
+(defmacro defrec [name args & body]
+  `(def ~name (tail-recursive (fn ~args ~@body))))
+
+(defrec factorial [n acc]
+  (if (= n 0)
+    acc
+    (factorial (- n 1) (* n acc))))
 
 (defn factorial2 [n acc]
-      (if (= n 0)
-        acc
-        (factorial2 (- n 1) (* n acc))))
+  (if (= n 0)
+    acc
+    (factorial2 (- n 1) (* n acc))))
 
 
 (println (factorial 10000 (bigint 1)))
-(println (factorial2 10000 (bigint 1)))
+;(println (factorial2 10000 (bigint 1)))
