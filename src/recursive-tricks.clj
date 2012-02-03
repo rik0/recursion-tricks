@@ -1,3 +1,5 @@
+(ns recursive-tricks.recursive-tricks)
+
 (defn uuid [] (str (java.util.UUID/randomUUID)))
 
 (defn tail-recursive [f]
